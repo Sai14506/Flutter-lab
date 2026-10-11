@@ -20,12 +20,13 @@ class _StudentDashboardState extends State<StudentDashboard> {
   bool notification = false;
   int counter = 0;
 
+  // Dashboard feature boxes
   Widget featureBox(IconData icon, String text) {
     return Column(
       children: [
         Container(
-          height: 70,
-          width: 70,
+          height: 65,
+          width: 65,
           decoration: BoxDecoration(
             color: Colors.blue.shade100,
             borderRadius: BorderRadius.circular(15),
@@ -40,7 +41,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
         Text(
           text,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 15,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -59,12 +60,13 @@ class _StudentDashboardState extends State<StudentDashboard> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // College background image and student details
+            // College background and student details
             Stack(
               clipBehavior: Clip.none,
               children: [
-                Image.asset(
-                  "assets/images/image1.jpg",
+                // Background image
+                Image.network(
+                  "https://www.facebook.com/srivishnueducationalsociety/mentions/.jpg",
                   width: double.infinity,
                   height: 220,
                   fit: BoxFit.cover,
@@ -72,14 +74,13 @@ class _StudentDashboardState extends State<StudentDashboard> {
                     return Container(
                       width: double.infinity,
                       height: 220,
-                      color: Colors.blue.shade700,
+                      color: Colors.blue,
                       child: const Center(
                         child: Text(
                           "Vishnu Institute of Technology",
-                          textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 23,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -88,33 +89,36 @@ class _StudentDashboardState extends State<StudentDashboard> {
                   },
                 ),
 
-                // Dark overlay to make the text readable
+                // Dark overlay
                 Positioned.fill(
                   child: Container(
-                    height: 220,
-                    color: Colors.black.withOpacity(0.25),
+                    color: Colors.black.withOpacity(0.3),
                   ),
                 ),
 
-                // Student profile image
+                // College logo / profile image (Using NetworkImage instead of AssetImage)
                 const Positioned(
                   left: 20,
                   bottom: -40,
                   child: CircleAvatar(
                     radius: 45,
-                    backgroundImage: AssetImage("assets/images/vit.jpg"),
+                    backgroundColor: Colors.white,
+                    backgroundImage: NetworkImage(
+                      "https://ic4s-conference.eai-conferences.org/2023/about-vishnu-institute-of-technology/index.html.jpg",
+                    ),
                   ),
                 ),
 
                 // Student name and course
                 const Positioned(
                   left: 120,
+                  right: 8,
                   bottom: 25,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Tirukachuru Tanuja Sindhu",
+                        "T Sai Chandu",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -125,7 +129,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                         "Computer Science Student",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 15,
                         ),
                       ),
                     ],
@@ -180,7 +184,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
               ],
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 25),
 
             // Notification switch
             Row(
@@ -237,7 +241,10 @@ class _StudentDashboardState extends State<StudentDashboard> {
                           });
                         }
                       : null,
-                  child: const Text("+"),
+                  child: const Text(
+                    "+",
+                    style: TextStyle(fontSize: 22),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: notification
@@ -247,7 +254,10 @@ class _StudentDashboardState extends State<StudentDashboard> {
                           });
                         }
                       : null,
-                  child: const Text("-"),
+                  child: const Text(
+                    "-",
+                    style: TextStyle(fontSize: 22),
+                  ),
                 ),
               ],
             ),
@@ -260,7 +270,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text(
-                      "Visit https://www.aajtakcampus.in/college/vishnu-institute-of-technology",
+                      "Visit vishnu.edu.in for college information",
                     ),
                   ),
                 );
